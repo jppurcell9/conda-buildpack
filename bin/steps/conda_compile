@@ -17,6 +17,11 @@ if [ -f conda-requirements.txt ]; then
     conda install --file conda-requirements.txt --yes | indent
 fi
 
+for f in conda-requirements-*.txt
+do
+    echo $f | sed 's/conda-requirements-\(.*\)\.txt/conda install --file conda-requirements-\1.txt --channel \1 --yes | indent/'
+done
+
 if [ -f requirements.txt ]; then
     puts-step "Installing dependencies using Pip"
     pip install -r requirements.txt  --exists-action=w --allow-all-external | indent
