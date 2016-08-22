@@ -19,7 +19,7 @@ fi
 
 for f in conda-requirements-*.txt
 do
-    echo $f | sed 's/conda-requirements-\(.*\)\.txt/conda install --file conda-requirements-\1.txt --channel \1 --yes | indent/'
+    `echo $f | sed 's/conda-requirements-\(.*\)\.txt/conda install -c \1 --file conda-requirements-\1.txt --yes | indent/'`
 done
 
 if [ -f requirements.txt ]; then
